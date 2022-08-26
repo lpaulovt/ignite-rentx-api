@@ -4,13 +4,14 @@ import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
+
 import * as Sentry from "@sentry/node";
 import * as Tracing from "@sentry/tracing";
 
 import "@shared/container";
 import upload from "@config/upload";
 import { AppError } from "@shared/errors/AppError";
-import rateLimiter from "@shared/infra/http/middlewares/rateLimiter";
+// import rateLimiter from "@shared/infra/http/middlewares/rateLimiter";
 import createConnection from "@shared/infra/typeorm";
 
 import swaggerFile from "../../../swagger.json";
@@ -19,7 +20,7 @@ import { router } from "./routes";
 createConnection();
 const app = express();
 
-app.use(rateLimiter);
+// app.use(rateLimiter);
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
